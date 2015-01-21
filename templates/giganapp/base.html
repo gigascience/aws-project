@@ -65,14 +65,25 @@
                     <li>
                         <a href="/giganapp/">Home</a>
                     </li>
+                    {% if not user.is_authenticated %}
                     <li>
-                        <a href="#">Register</a>
+                        <a href="/giganapp/register">Register</a>
                     </li>
+                    {% endif %}
                     <li>
-                        <a href="#">Login</a>
+                        {% if user.is_authenticated %}
+                        <a href="/giganapp/logout">Logout</a>
+                        {% else %}
+                        <a href="/giganapp/login">Login</a>
+                        {% endif %}
                     </li>
                     <li class="dropdown">
+                        {% if user.is_authenticated %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ user.username }}'s stuff <span class="caret"></span></a>
+                        {% else %}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your stuff <span class="caret"></span></a>
+                        {% endif %}
+
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Papers</a></li>
                           <li><a href="#">Figures</a></li>

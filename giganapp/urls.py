@@ -9,4 +9,8 @@ urlpatterns = patterns('',
     url(r'^tables/', views.tables, name='tables'),
     url(r'^paper/(?P<paper_short_name_url>\w+)/$', views.paper, name='paper'),
     url(r'^paper/(?P<paper_short_name_url>\w+)/workflow/(?P<workflow_name>\w+)/', views.workflow, name='paper'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
+
 )

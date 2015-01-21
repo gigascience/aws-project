@@ -7,6 +7,11 @@ from giganapp.models import Figure
 from giganapp.models import Table
 
 from django.shortcuts import render
+from giganapp.forms import UserForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def workflow(request, paper_short_name_url, workflow_name):
@@ -72,9 +77,11 @@ def paper(request, paper_short_name_url):
         # We get here if we didn't find the specified paper.
         # Don't do anything - the template displays the "no paper" message for us.
         pass
-
+    if request.user.is_authenticated():
     # Go render the response and return it to the client.
-    return render_to_response('giganapp/paper.html', context_dict, context)
+        return render_to_response('giganapp/paper.html', context_dict, context)
+    else:
+        return render_to_response('giganapp/warninglogin.html')
 
 
 def tables(request):
@@ -92,7 +99,10 @@ def tables(request):
     #     paper.url = paper.short_name
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/tables.html', context_dict, context)
+    if request.user.is_authenticated():
+        return render_to_response('giganapp/tables.html', context_dict, context)
+    else:
+        return render_to_response('giganapp/warninglogin.html')
 
 
 def figures(request):
@@ -110,7 +120,10 @@ def figures(request):
     #     paper.url = paper.short_name
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/figures.html', context_dict, context)
+    if request.user.is_authenticated():
+        return render_to_response('giganapp/figures.html', context_dict, context)
+    else:
+        return render_to_response('giganapp/warninglogin.html')
 
 
 def papers(request):
@@ -127,8 +140,10 @@ def papers(request):
     for paper in paper_list:
         paper.url = paper.short_name
 
+
     # Render the response and return to the client.
     return render_to_response('giganapp/papers.html', context_dict, context)
+
 
 
 def index(request):
@@ -159,3 +174,80 @@ def about(request):
     # Note that the first parameter is the template we wish to use.
 
     return render(request, 'giganapp/about.html', context_dict)
+
+
+def register(request):
+    context = RequestContext(request)
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            # Save the user's form data to the database.
+            user = user_form.save()
+
+            # Now we hash the password with the set_password method.
+            # Once hashed, we can update the user object.
+            user.set_password(user.password)
+            user.save()
+            new_user = authenticate(username=request.POST['username'],
+                                   password=request.POST['password'])
+            login(request, new_user)
+            registered = True
+        else:
+            print user_form.errors
+    else:
+        user_form = UserForm()
+    return render_to_response(
+            'giganapp/register.html',
+            {'user_form': user_form, 'registered': registered},
+            context)
+
+
+def user_login(request):
+    # Like before, obtain the context for the user's request.
+    context = RequestContext(request)
+
+    # If the request is a HTTP POST, try to pull out the relevant information.
+    if request.method == 'POST':
+        # Gather the username and password provided by the user.
+        # This information is obtained from the login form.
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # Use Django's machinery to attempt to see if the username/password
+        # combination is valid - a User object is returned if it is.
+        user = authenticate(username=username, password=password)
+
+        # If we have a User object, the details are correct.
+        # If None (Python's way of representing the absence of a value), no user
+        # with matching credentials was found.
+        if user:
+            # Is the account active? It could have been disabled.
+            if user.is_active:
+                # If the account is valid and active, we can log the user in.
+                # We'll send the user back to the homepage.
+                login(request, user)
+                return HttpResponseRedirect('/giganapp/')
+            else:
+                # An inactive account was used - no logging in!
+                return HttpResponse("Your GigaFig account is disabled.")
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Invalid login details supplied.")
+
+    # The request is not a HTTP POST, so display the login form.
+    # This scenario would most likely be a HTTP GET.
+    else:
+        # No context variables to pass to the template system, hence the
+        # blank dictionary object...
+        return render_to_response('giganapp/login.html', {}, context)
+
+
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+
+    # Take the user back to the homepage.
+    return HttpResponseRedirect('/giganapp/')
