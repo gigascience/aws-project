@@ -1,0 +1,78 @@
+{% extends 'giganapp/base.html' %}
+
+{% load staticfiles %} <!-- New line -->
+
+{% block title %}{{ paper.short_name }}{% endblock %}
+
+{% block body_block %}
+
+<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Paper</a></li>
+    <li><a href="#">SmileFinder</a></li>
+    <li class="active">WF1</li>
+</ol>
+
+<div class="col-md-8">
+    <div id="cy"></div>
+
+</div>
+
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Information</h3>
+        </div>
+        <div class="panel-body">
+            <p>SmileFinder is a tool for detecting diversity and divergence patterns associated with selection sweeps by
+                evaluating allele frequencies. The collection of SmileFinder scripts have been deployed as tools in
+                GigaGalaxy and can be used within a workflow to identify a difference in diversity between two African
+                populations.</p>
+        </div>
+    </div>
+
+    <div class="panel panel-default panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">Data inputs</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+    <div class="panel panel-default panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Data outputs</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+    <div class="panel panel-default panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Tools</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+    <div class="panel panel-default panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">AWS</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+</div>
+
+
+<script src="{% static 'js/jquery-2.1.1.js' %}"></script>
+<script src="{% static 'js/dagre.js' %}"></script>
+<script src="{% static 'js/cytoscape.js' %}"></script>
+<script src="{% static 'js/smilefinder.js' %}"></script>
+
+{% endblock %}

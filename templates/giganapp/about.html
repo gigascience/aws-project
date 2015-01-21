@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load staticfiles %} <!-- New line -->
+
+<html>
+
+    <head>
+        <title>GigaNapp</title>
+    </head>
+
+    <body>
+        <h1>GigaNapp says...</h1>
+        This is the about page as a template. <strong>{{ boldmessage }}</strong><br />
+        <a href="/giganapp/about/">About</a><br />
+        <img src="{% static "images/logo.gif" %}" alt="Picture of GigaScience" />
+    </body>
+
+</html>

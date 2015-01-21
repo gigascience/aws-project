@@ -1,0 +1,60 @@
+{% extends 'giganapp/base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+
+<!-- Page Features -->
+
+<!-- Title -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Figures</h3>
+    </div>
+</div>
+
+<div class="row text-center">
+    {% if figures %}
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Preview
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Paper
+                </th>
+                <th>
+                    Workflow
+                </th>
+            </tr>
+            {% for figure in figures %}
+            <tr>
+                <td class="text-left">
+                    <img src="{{ figure.tbn_file }}" alt="Picture of GigaScience" />
+                </td>
+                <td class="text-left">
+                    <a href="{{ figure.url }}">{{ figure.title }}</a>
+                </td>
+                <td class="text-left">
+                    <a href="/giganapp/paper/{{ figure.paper.short_name }}">doi:10.1186/{{ figure.paper.doi_suffix }}</a>
+                </td>
+                <td class="text-left">
+                    {% if figure.wf_js == "" %}
+                    No
+                    {% else %}
+                    <a href="/giganapp/paper/{{ figure.paper.short_name }}/workflow/{{ figure.wf_name }}/">Yes</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <strong>No figure currently in paper.</strong>
+    {% endif %}
+</div>
+<!-- /.row -->
+
+{% endblock %}

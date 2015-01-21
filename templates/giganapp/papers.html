@@ -1,0 +1,41 @@
+{% extends 'giganapp/base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+
+<!-- Page Features -->
+
+<!-- Title -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Papers</h3>
+    </div>
+</div>
+
+<div class="row text-center">
+    {% if papers %}
+    <!--<ul>-->
+    {% for paper in papers %}
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img alt="GigaScience" src="{% static "images/dna.png" %}">
+            <!--<img src="http://placehold.it/800x500" alt="">-->
+            <div class="caption">
+                <h4>{{ paper.short_name }}</h4>
+                <p>
+                <a href="/giganapp/paper/{{ paper.short_name }}">doi:10.1186/{{ paper.doi_suffix }}</a>
+                </p>
+                    <a href="#" class="btn btn-primary" disabled="disabled">AWS</a> <a href="/giganapp/paper/{{ paper.short_name }}" class="btn btn-default">More Info</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <strong>There are no papers present.</strong>
+    {% endif %}
+</div>
+<!-- /.row -->
+
+{% endblock %}

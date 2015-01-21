@@ -1,0 +1,112 @@
+{% extends 'giganapp/base.html' %}
+
+{% load staticfiles %} <!-- New line -->
+
+{% block title %}{{ paper.short_name }}{% endblock %}
+
+{% block body_block %}
+    <p><small>{{ paper_type }}</small></p>
+    <h3 class="text-success">{{ paper.title }}</h3>
+    <p><strong>{{ paper.authors }}</strong></p>
+    <p><em>{{ paper.journal }}</em> {{ paper.year }}, <strong>{{ paper.volume }}</strong>: {{ paper.page }}</p>
+
+<hr/>
+
+    <p class="text-success"><strong>Abstract</strong></p>
+    <p><strong>Background</strong></p>
+    <p>{{ paper.background }}</p>
+    <p><strong>Results</strong></p>
+    <p>{{ paper.results }}</p>
+    <p><strong>Conclusions</strong></p>
+    <p>{{ paper.conclusions }}</p>
+
+    {% if paper %}
+        {% if figures %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Figures</h3>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Preview
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Workflow availability
+                    </th>
+                </tr>
+                {% for figure in figures %}
+                <tr>
+                    <td>
+                        <img src="{{ figure.tbn_file }}" alt="Picture of GigaScience" />
+                    </td>
+                    <td>
+                        <a href="{{ figure.url }}">{{ figure.title }}</a>
+                    </td>
+                    <td>
+                        {% if figure.wf_js == "" %}
+                        No
+                        {% else %}
+                        <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ figure.wf_name }}">Yes</a>
+                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
+                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <strong>There are no figures in paper.</strong>
+        {% endif %}
+
+        <hr/>
+
+        {% if tables %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Tables</h3>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Preview
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Workflow availability
+                    </th>
+                </tr>
+                {% for table in tables %}
+                <tr>
+                    <td>
+                        <img src="{{ table.tbn_file }}" alt="Picture of GigaScience" />
+                    </td>
+                    <td>
+                        <a href="{{ table.url }}">{{ table.title }}</a>
+                    </td>
+                    <td>
+                        {% if table.wf_js == "" %}
+                        No
+                        {% else %}
+                        <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ table.wf_name }}">Yes</a>
+                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
+                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <strong>There are no tables in the paper.</strong>
+        {% endif %}
+    {% else %}
+            The specified paper {{ paper_short_name }} does not exist!
+    {% endif %}
+{% endblock %}
