@@ -1,7 +1,7 @@
-__author__ = 'xiaosizhe'
 from django import forms
-from giganapp.models import Paper, Figure, Table
 from django.contrib.auth.models import User
+from giganapp.models import Paper, Figure, Table, UserProfile
+
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -9,3 +9,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture', 'orcid')

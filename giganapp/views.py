@@ -7,7 +7,7 @@ from giganapp.models import Figure
 from giganapp.models import Table
 
 from django.shortcuts import render
-from giganapp.forms import UserForm
+from giganapp.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -77,11 +77,8 @@ def paper(request, paper_short_name_url):
         # We get here if we didn't find the specified paper.
         # Don't do anything - the template displays the "no paper" message for us.
         pass
-    if request.user.is_authenticated():
     # Go render the response and return it to the client.
-        return render_to_response('giganapp/paper.html', context_dict, context)
-    else:
-        return render_to_response('giganapp/warninglogin.html')
+    return render_to_response('giganapp/paper.html', context_dict, context)
 
 
 def tables(request):
@@ -99,10 +96,7 @@ def tables(request):
     #     paper.url = paper.short_name
 
     # Render the response and return to the client.
-    if request.user.is_authenticated():
-        return render_to_response('giganapp/tables.html', context_dict, context)
-    else:
-        return render_to_response('giganapp/warninglogin.html')
+    return render_to_response('giganapp/tables.html', context_dict, context)
 
 
 def figures(request):
@@ -120,10 +114,7 @@ def figures(request):
     #     paper.url = paper.short_name
 
     # Render the response and return to the client.
-    if request.user.is_authenticated():
-        return render_to_response('giganapp/figures.html', context_dict, context)
-    else:
-        return render_to_response('giganapp/warninglogin.html')
+    return render_to_response('giganapp/figures.html', context_dict, context)
 
 
 def papers(request):
@@ -140,10 +131,8 @@ def papers(request):
     for paper in paper_list:
         paper.url = paper.short_name
 
-
     # Render the response and return to the client.
     return render_to_response('giganapp/papers.html', context_dict, context)
-
 
 
 def index(request):
@@ -179,9 +168,12 @@ def about(request):
 def register(request):
     context = RequestContext(request)
     registered = False
+
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        if user_form.is_valid():
+        profile_form = UserProfileForm(data=request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
 
@@ -189,17 +181,38 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-            new_user = authenticate(username=request.POST['username'],
-                                   password=request.POST['password'])
-            login(request, new_user)
+
+            # Now sort out the UserProfile instance.
+            # Since we need to set the user attribute ourselves, we set commit=False.
+            # This delays saving the model until we're ready to avoid integrity problems.
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            # Did the user provide a profile picture?
+            # If so, we need to get it from the input form and put it in the UserProfile model.
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            # new_user = authenticate(username=request.POST['username'],
+            #                        password=request.POST['password'])
+            # login(request, new_user)
+
+            # Now we save the UserProfile model instance.
+            profile.save()
+
+            # Update our variable to tell the template registration was successful.
             registered = True
         else:
-            print user_form.errors
+            print user_form.errors, profile_form.errors
+
+    # Not a HTTP POST, so we render our form using two ModelForm instances.
+    # These forms will be blank, ready for user input.
     else:
         user_form = UserForm()
+        profile_form = UserProfileForm()
     return render_to_response(
             'giganapp/register.html',
-            {'user_form': user_form, 'registered': registered},
+            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
 
 
