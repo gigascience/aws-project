@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from giganapp.models import Paper, Figure, Table, UserProfile
+from gigafig.models import Paper, Figure, Table, UserProfile
 
 
 class UserForm(forms.ModelForm):

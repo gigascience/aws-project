@@ -1,4 +1,4 @@
-{% extends 'giganapp/base.html' %}
+{% extends 'gigafig/base.html' %}
 
 {% block body_block %}
 
@@ -6,12 +6,12 @@
 
         {% if registered %}
         <strong>Thank you for registering!</strong>
-        <a href="/giganapp/">Return to the homepage.</a><br />
+        <a href="/gigafig/">Return to the homepage.</a><br />
         {% else %}
 
         <br>
         <br>
-        <form id="user_form" method="post" action="/giganapp/register/"
+        <form id="user_form" method="post" action="/gigafig/register/"
                 enctype="multipart/form-data">
 
             {% csrf_token %}

@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     // Load data using HTTP GET request
     var wf = $.ajax({
-        url: '/giganapp/galaxy2cytoscape/',
+        url: '/gigafig/galaxy2cytoscape/',
         type: 'GET',
         error: function (xhr, tStatus, err) {
             $('#cy').html('<p>Problem converting galaxy workflow</p><p>HTTP status: ' + xhr.status + '</p><p>' + tStatus + '</p><p>' + err + '</p>');

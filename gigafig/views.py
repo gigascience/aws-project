@@ -2,13 +2,13 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 
-from giganapp.models import Paper
-from giganapp.models import Figure
-from giganapp.models import Table
-from giganapp.models import Workflow
+from gigafig.models import Paper
+from gigafig.models import Figure
+from gigafig.models import Table
+from gigafig.models import Workflow
 
 from django.shortcuts import render
-from giganapp.forms import UserForm, UserProfileForm
+from gigafig.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -37,7 +37,7 @@ def files(request):
     context = RequestContext(request)
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/files.html', context)
+    return render_to_response('gigafig/files.html', context)
 
 
 def workflow(request, paper_short_name_url, workflow_name):
@@ -73,7 +73,7 @@ def workflow(request, paper_short_name_url, workflow_name):
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
-    return render_to_response('giganapp/workflow.html', context_dict, context)
+    return render_to_response('gigafig/workflow.html', context_dict, context)
 
 
 def paper(request, paper_short_name_url):
@@ -125,7 +125,7 @@ def paper(request, paper_short_name_url):
         # Don't do anything - the template displays the "no paper" message for us.
         pass
     # Go render the response and return it to the client.
-    return render_to_response('giganapp/paper.html', context_dict, context)
+    return render_to_response('gigafig/paper.html', context_dict, context)
 
 
 def tables(request):
@@ -143,7 +143,7 @@ def tables(request):
     #     paper.url = paper.short_name
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/tables.html', context_dict, context)
+    return render_to_response('gigafig/tables.html', context_dict, context)
 
 
 def figures(request):
@@ -161,7 +161,7 @@ def figures(request):
     #     paper.url = paper.short_name
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/figures.html', context_dict, context)
+    return render_to_response('gigafig/figures.html', context_dict, context)
 
 
 def papers(request):
@@ -179,7 +179,7 @@ def papers(request):
         paper.url = paper.short_name
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/papers.html', context_dict, context)
+    return render_to_response('gigafig/papers.html', context_dict, context)
 
 
 def index(request):
@@ -197,7 +197,7 @@ def index(request):
         paper.url = paper.short_name
 
     # Render the response and return to the client.
-    return render_to_response('giganapp/index.html', context_dict, context)
+    return render_to_response('gigafig/index.html', context_dict, context)
 
 
 def about(request):
@@ -209,7 +209,7 @@ def about(request):
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
 
-    return render(request, 'giganapp/about.html', context_dict)
+    return render(request, 'gigafig/about.html', context_dict)
 
 
 def register(request):
@@ -258,7 +258,7 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
     return render_to_response(
-            'giganapp/register.html',
+            'gigafig/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
 
@@ -287,7 +287,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/giganapp/')
+                return HttpResponseRedirect('/gigafig/')
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your GigaFig account is disabled.")
@@ -301,7 +301,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render_to_response('giganapp/login.html', {}, context)
+        return render_to_response('gigafig/login.html', {}, context)
 
 
 @login_required
@@ -310,4 +310,4 @@ def user_logout(request):
     logout(request)
 
     # Take the user back to the homepage.
-    return HttpResponseRedirect('/giganapp/')
+    return HttpResponseRedirect('/gigafig/')

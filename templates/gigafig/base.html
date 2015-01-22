@@ -26,7 +26,7 @@
 
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 
-    <title>GigaNapp - {% block title %}How to Tango with Django!{% endblock %}</title>
+    <title>gigafig - {% block title %}How to Tango with Django!{% endblock %}</title>
 </head>
 
 <body>
@@ -49,13 +49,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/giganapp/papers/">Papers</a>
+                        <a href="/gigafig/papers/">Papers</a>
                     </li>
                     <li>
-                        <a href="/giganapp/figures/">Figures</a>
+                        <a href="/gigafig/figures/">Figures</a>
                     </li>
                     <li>
-                        <a href="/giganapp/tables/">Tables</a>
+                        <a href="/gigafig/tables/">Tables</a>
                     </li>
                     <li>
                         <a href="#">Workflows</a>
@@ -63,18 +63,18 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/giganapp/">Home</a>
+                        <a href="/gigafig/">Home</a>
                     </li>
                     {% if not user.is_authenticated %}
                     <li>
-                        <a href="/giganapp/register">Register</a>
+                        <a href="/gigafig/register">Register</a>
                     </li>
                     {% endif %}
                     <li>
                         {% if user.is_authenticated %}
-                        <a href="/giganapp/logout">Logout</a>
+                        <a href="/gigafig/logout">Logout</a>
                         {% else %}
-                        <a href="/giganapp/login">Login</a>
+                        <a href="/gigafig/login">Login</a>
                         {% endif %}
                     </li>
                     <li class="dropdown">

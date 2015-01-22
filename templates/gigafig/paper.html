@@ -1,4 +1,4 @@
-{% extends 'giganapp/base.html' %}
+{% extends 'gigafig/base.html' %}
 
 {% load staticfiles %} <!-- New line -->
 
@@ -52,7 +52,7 @@
                                 {% if f_wf.url == "" %}
                                 No
                                 {% else %}
-                                <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ f_wf.name }}">Yes</a>
+                                <a href="/gigafig/paper/{{ paper.short_name }}/workflow/{{ f_wf.name }}">Yes</a>
                                 {% endif %}
                             </td>
                         </tr>
@@ -96,7 +96,7 @@
                                 {% if t_wf.url == "" %}
                                 No
                                 {% else %}
-                                <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ t_wf.name }}">Yes</a>
+                                <a href="/gigafig/paper/{{ paper.short_name }}/workflow/{{ t_wf.name }}">Yes</a>
                                 {% endif %}
                             </td>
                         </tr>

@@ -1,4 +1,4 @@
-{% extends 'giganapp/base.html' %}
+{% extends 'gigafig/base.html' %}
 
 {% load staticfiles %}
 
@@ -7,8 +7,8 @@
 {% block body_block %}
 
 <ol class="breadcrumb">
-    <li><a href="/giganapp/papers/">Papers</a></li>
-    <li><a href="/giganapp/paper/{{ paper.short_name }}">{{ paper.short_name }}</a></li>
+    <li><a href="/gigafig/papers/">Papers</a></li>
+    <li><a href="/gigafig/paper/{{ paper.short_name }}">{{ paper.short_name }}</a></li>
     <li class="active">{{ wf.name }}</li>
 </ol>
 

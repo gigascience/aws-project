@@ -1,6 +1,6 @@
 from django.contrib import admin
-from giganapp.models import Paper, Figure, Table, Workflow
-from giganapp.models import UserProfile
+from gigafig.models import Paper, Figure, Table, Workflow
+from gigafig.models import UserProfile
 
 
 class PaperAdmin(admin.ModelAdmin):

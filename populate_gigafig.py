@@ -447,9 +447,9 @@ def add_table_workflow(paper, table, url, name, title, description):
 
 # Start execution here!
 if __name__ == '__main__':
-    print "Starting GigaNapp population script..."
+    print "Starting gigafig population script..."
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aws-project.settings')
-    from giganapp.models import Paper, Figure, Table, Workflow
+    from gigafig.models import Paper, Figure, Table, Workflow
 
     django.setup()
     populate()

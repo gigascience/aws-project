@@ -7,7 +7,7 @@ from django.conf.urls.static import static # New Import
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^giganapp/', include('giganapp.urls')),  # ADD THIS NEW TUPLE!
+    url(r'^gigafig/', include('gigafig.urls')),  # ADD THIS NEW TUPLE!
 )
 
 if settings.DEBUG:

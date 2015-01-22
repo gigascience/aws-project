@@ -1,10 +1,17 @@
-{% extends 'giganapp/base.html' %}
+{% extends 'gigafig/base.html' %}
 
 {% load staticfiles %}
 
 {% block body_block %}
 
-<!-- Page Features -->
+<!-- Jumbotron Header -->
+<header class="jumbotron hero-spacer">
+    <h3>AWS GigaScience application demo</h3>
+    <p>A brain dump of what I learnt about  Django, BootStrap, jQuery, Cytoscape JS, JointJS and Dagre.</p>
+    </p>
+</header>
+
+<hr>
 
 <!-- Title -->
 <div class="row">
@@ -12,21 +19,24 @@
         <h3>Papers</h3>
     </div>
 </div>
+<!-- /.row -->
 
+<!-- Page Features -->
 <div class="row text-center">
     {% if papers %}
     <!--<ul>-->
     {% for paper in papers %}
     <div class="col-md-3 col-sm-6 hero-feature">
         <div class="thumbnail">
-            <img alt="GigaScience" src="{% static "images/dna.png" %}">
+            <img alt="GigaScience" src="{{ paper.image_url }}">
             <!--<img src="http://placehold.it/800x500" alt="">-->
             <div class="caption">
                 <h4>{{ paper.short_name }}</h4>
                 <p>
-                <a href="/giganapp/paper/{{ paper.short_name }}">doi:10.1186/{{ paper.doi_suffix }}</a>
+                <a href="#">doi:10.1186/{{ paper.doi_suffix }}</a>
                 </p>
-                    <a href="#" class="btn btn-primary" disabled="disabled">AWS</a> <a href="/giganapp/paper/{{ paper.short_name }}" class="btn btn-default">More Info</a>
+                <p>
+                    <a href="#" class="btn btn-primary" disabled="disabled">AWS</a> <a href="/gigafig/paper/{{ paper.short_name }}" class="btn btn-default">More Info</a>
                 </p>
             </div>
         </div>
