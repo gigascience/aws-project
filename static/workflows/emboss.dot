@@ -1,0 +1,5 @@
+digraph "Workflow constructed from history 'emboss test'" {
+	"Start" -> "1:transeq"[label="Input Dataset", fontcolor="#0000ff"]
+	"1:transeq" -> "2:pepstats"
+	"2:pepstats" -> "End"
+}

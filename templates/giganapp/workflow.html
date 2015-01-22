@@ -1,78 +1,91 @@
 {% extends 'giganapp/base.html' %}
 
-{% load staticfiles %} <!-- New line -->
+{% load staticfiles %}
 
 {% block title %}{{ paper.short_name }}{% endblock %}
 
 {% block body_block %}
 
 <ol class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Paper</a></li>
-    <li><a href="#">SmileFinder</a></li>
-    <li class="active">WF1</li>
+    <li><a href="/giganapp/papers/">Papers</a></li>
+    <li><a href="/giganapp/paper/{{ paper.short_name }}">{{ paper.short_name }}</a></li>
+    <li class="active">{{ wf.name }}</li>
 </ol>
 
+<!-- The graph is displayed here in the cy element -->
 <div class="col-md-8">
-    <div id="cy"></div>
-
+    <div id="cy" data-galaxyurl="{{ wf.url }}"></div>
+    <div id="loading">
+        <span class="fa fa-refresh fa-spin"></span>
+    </div>
 </div>
 
-<div class="col-md-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Information</h3>
+<div class="col-md-4" style="height: 700px; overflow-y:scroll;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#pane1" data-toggle="tab">Info</a></li>
+        <li><a href="#pane2" data-toggle="tab">Nodes</a></li>
+        <li><a href="#pane3" data-toggle="tab">AWS</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <br> <!-- Must be a better way of adding space between tabs and content -->
+
+        <div id="pane1" class="tab-pane active">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ wf.title }}</h3>
+                </div>
+                <div id="wf_description" class="panel-body">
+                    <p>{{ wf.description }}</p>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <p>SmileFinder is a tool for detecting diversity and divergence patterns associated with selection sweeps by
-                evaluating allele frequencies. The collection of SmileFinder scripts have been deployed as tools in
-                GigaGalaxy and can be used within a workflow to identify a difference in diversity between two African
-                populations.</p>
+        <div id="pane2" class="tab-pane">
+            <div class="panel panel-default panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Data inputs</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+
+            <div class="panel panel-default panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Data outputs</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+
+            <div class="panel panel-default panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Tools</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+        <div id="pane3" class="tab-pane">
+            <div class="panel panel-default panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">AWS</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="panel panel-default panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">Data inputs</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
-    <div class="panel panel-default panel-success">
-        <div class="panel-heading">
-            <h3 class="panel-title">Data outputs</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
-    <div class="panel panel-default panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">Tools</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
-    <div class="panel panel-default panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title">AWS</h3>
-        </div>
-        <div class="panel-body">
-            Panel content
-        </div>
-    </div>
-
+    <!-- /.tab-content -->
 </div>
-
 
 <script src="{% static 'js/jquery-2.1.1.js' %}"></script>
 <script src="{% static 'js/dagre.js' %}"></script>
 <script src="{% static 'js/cytoscape.js' %}"></script>
-<script src="{% static 'js/smilefinder.js' %}"></script>
+<script src="{% static 'js/bluebird-min-1.2.2.js' %}"></script>
+<script src="{% static 'js/cy-viz.js' %}"></script>
 
 {% endblock %}

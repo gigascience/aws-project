@@ -40,23 +40,23 @@
                     </th>
                 </tr>
                 {% for figure in figures %}
-                <tr>
-                    <td>
-                        <img src="{{ figure.tbn_file }}" alt="Picture of GigaScience" />
-                    </td>
-                    <td>
-                        <a href="{{ figure.url }}">{{ figure.title }}</a>
-                    </td>
-                    <td>
-                        {% if figure.wf_js == "" %}
-                        No
-                        {% else %}
-                        <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ figure.wf_name }}">Yes</a>
-                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
-                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
-                        {% endif %}
-                    </td>
-                </tr>
+                    {% for f_wf in figure.workflow_set.all %}
+                        <tr>
+                            <td>
+                                <img src="{{ figure.tbn_file }}" alt="Picture of GigaScience" />
+                            </td>
+                            <td>
+                                <a href="{{ figure.url }}">{{ figure.title }}</a>
+                            </td>
+                            <td>
+                                {% if f_wf.url == "" %}
+                                No
+                                {% else %}
+                                <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ f_wf.name }}">Yes</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 {% endfor %}
             </table>
         {% else %}
@@ -84,23 +84,23 @@
                     </th>
                 </tr>
                 {% for table in tables %}
-                <tr>
-                    <td>
-                        <img src="{{ table.tbn_file }}" alt="Picture of GigaScience" />
-                    </td>
-                    <td>
-                        <a href="{{ table.url }}">{{ table.title }}</a>
-                    </td>
-                    <td>
-                        {% if table.wf_js == "" %}
-                        No
-                        {% else %}
-                        <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ table.wf_name }}">Yes</a>
-                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
-                        <!--<a href="/giganapp/paper/{{ paper.short_name }}/workflow/">Yes</a>-->
-                        {% endif %}
-                    </td>
-                </tr>
+                    {% for t_wf in table.workflow_set.all %}
+                        <tr>
+                            <td>
+                                <img src="{{ table.tbn_file }}" alt="Picture of GigaScience" />
+                            </td>
+                            <td>
+                                <a href="{{ table.url }}">{{ table.title }}</a>
+                            </td>
+                            <td>
+                                {% if t_wf.url == "" %}
+                                No
+                                {% else %}
+                                <a href="/giganapp/paper/{{ paper.short_name }}/workflow/{{ t_wf.name }}">Yes</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 {% endfor %}
             </table>
         {% else %}
@@ -110,4 +110,3 @@
             The specified paper {{ paper_short_name }} does not exist!
     {% endif %}
 {% endblock %}
-

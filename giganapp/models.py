@@ -60,6 +60,19 @@ class Table(models.Model):
         return self.title
 
 
+class Workflow(models.Model):
+    paper = models.ForeignKey(Paper)
+    figure = models.ForeignKey(Figure, blank=True, null=True)
+    table = models.ForeignKey(Table, blank=True, null=True)
+    url = models.URLField()
+    title = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, blank=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)

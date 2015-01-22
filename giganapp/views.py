@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from giganapp.models import Paper
 from giganapp.models import Figure
 from giganapp.models import Table
+from giganapp.models import Workflow
 
 from django.shortcuts import render
 from giganapp.forms import UserForm, UserProfileForm
@@ -13,19 +14,65 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
+import wf2cyto
+
+
+def galaxy2cytoscape(request):
+    # Obtain the context from the HTTP request.
+    context = RequestContext(request)
+    galaxy_url = None
+    if request.method == 'GET':
+        galaxy_url = request.GET['galaxy_wf_json_url']
+    if galaxy_url:
+        content = wf2cyto.run(galaxy_url, False, True)
+        print content
+        # Render response and return to client
+        return HttpResponse(content, content_type='text/json')
+    else:
+        return HttpResponse("", content_type='text/plain')
+
+
+def files(request):
+    # Obtain the context from the HTTP request.
+    context = RequestContext(request)
+
+    # Render the response and return to the client.
+    return render_to_response('giganapp/files.html', context)
+
 
 def workflow(request, paper_short_name_url, workflow_name):
     # Obtain the context from the HTTP request.
     context = RequestContext(request)
 
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "I am bold font from the context"}
+    # Create a context dictionary which we can pass to the template rendering engine.
+    # We start by containing the name of the paper passed by the user.
+    context_dict = {'paper_short_name_url': paper_short_name_url}
+
+    # We need information about the workflow
+    try:
+        # Can we find a paper with the given name?
+        # If we can't, the .get() method raises a DoesNotExist exception.
+        # So the .get() method returns one model instance or raises an exception.
+        paper = Paper.objects.get(short_name=paper_short_name_url)
+
+        # Retrieve all of the associated figures and tables
+        # Note that filter returns >= 1 model instance.
+        wf = Workflow.objects.get(paper=paper, name=workflow_name)
+        # print "Workflow link: ", wf
+
+        # Adds our results list to the template context under name figures.
+        context_dict['wf'] = wf
+        # We also add the paper object from the database to the context dictionary.
+        # We'll use this in the template to verify that the paper exists.
+        context_dict['paper'] = paper
+    except Paper.DoesNotExist:
+        # We get here if we didn't find the specified paper.
+        # Don't do anything - the template displays the "no paper" message for us.
+        pass
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
-
     return render_to_response('giganapp/workflow.html', context_dict, context)
 
 

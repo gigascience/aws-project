@@ -1,0 +1,549 @@
+{
+    "boxSelectionEnabled": true,
+    "elements": {
+        "edges": [
+            {
+                "classes": "",
+                "data": {
+                    "id": "ab",
+                    "source": "a",
+                    "target": "b",
+                    "weight": 1
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "bc",
+                    "source": "b",
+                    "target": "c",
+                    "weight": 2
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "cd",
+                    "source": "c",
+                    "target": "d",
+                    "weight": 3
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "ce",
+                    "source": "c",
+                    "target": "e",
+                    "weight": 4
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "ef",
+                    "source": "e",
+                    "target": "f",
+                    "weight": 5
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "dg",
+                    "source": "d",
+                    "target": "g",
+                    "weight": 6
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "fg",
+                    "source": "f",
+                    "target": "g",
+                    "weight": 6
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "gh",
+                    "source": "g",
+                    "target": "h",
+                    "weight": 7
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "hi",
+                    "source": "h",
+                    "target": "i",
+                    "weight": 8
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "id": "ij",
+                    "source": "i",
+                    "target": "j",
+                    "weight": 8
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "edges",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            }
+        ],
+        "nodes": [
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "a",
+                    "name": "Select populations"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "b",
+                    "name": "Count"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "c",
+                    "name": "Filter"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "d",
+                    "name": "Select first"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "e",
+                    "name": "Remove beginning"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "f",
+                    "name": "Sort"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "g",
+                    "name": "Concatenate datasets"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "h",
+                    "name": "SmileFinder"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#0088CC",
+                    "id": "i",
+                    "name": "Grapher"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            },
+            {
+                "classes": "",
+                "data": {
+                    "color": "#51A351",
+                    "id": "j",
+                    "name": "graph"
+                },
+                "grabbable": true,
+                "grabbed": false,
+                "group": "nodes",
+                "locked": false,
+                "position": {},
+                "removed": false,
+                "selectable": true,
+                "selected": false
+            }
+        ]
+    },
+    "layout": {
+        "directed": true,
+        "name": "dagre",
+        "padding": 10,
+        "roots": "#a"
+    },
+    "maxZoom": 1e+50,
+    "minZoom": 1e-50,
+    "pan": {
+        "x": 0,
+        "y": 0
+    },
+    "panningEnabled": true,
+    "renderer": {
+        "name": "canvas"
+    },
+    "style": [
+        {
+            "css": {
+                "background-blacken": "0",
+                "background-clip": "node",
+                "background-color": "#888",
+                "background-fit": "none",
+                "background-image": "none",
+                "background-image-opacity": "1",
+                "background-opacity": "1",
+                "background-position-x": "50%",
+                "background-position-y": "50%",
+                "background-repeat": "no-repeat",
+                "border-color": "#000",
+                "border-opacity": "1",
+                "border-style": "solid",
+                "border-width": "0px",
+                "color": "#000",
+                "content": "",
+                "control-point-step-size": "40px",
+                "control-point-weight": "0.5",
+                "curve-style": "bezier",
+                "display": "element",
+                "font-family": "Helvetica",
+                "font-size": "16px",
+                "font-style": "normal",
+                "font-weight": "normal",
+                "haystack-radius": "0.8",
+                "height": "30px",
+                "line-color": "#ddd",
+                "line-style": "solid",
+                "mid-source-arrow-color": "#ddd",
+                "mid-source-arrow-fill": "filled",
+                "mid-source-arrow-shape": "none",
+                "mid-target-arrow-color": "#ddd",
+                "mid-target-arrow-fill": "filled",
+                "mid-target-arrow-shape": "none",
+                "min-zoomed-font-size": "0px",
+                "opacity": "1",
+                "overlay-color": "#000",
+                "overlay-opacity": "0",
+                "overlay-padding": "10px",
+                "padding-bottom": "0px",
+                "padding-left": "0px",
+                "padding-right": "0px",
+                "padding-top": "0px",
+                "pie-1-background-color": "black",
+                "pie-1-background-opacity": "1",
+                "pie-1-background-size": "0%",
+                "pie-10-background-color": "black",
+                "pie-10-background-opacity": "1",
+                "pie-10-background-size": "0%",
+                "pie-11-background-color": "black",
+                "pie-11-background-opacity": "1",
+                "pie-11-background-size": "0%",
+                "pie-12-background-color": "black",
+                "pie-12-background-opacity": "1",
+                "pie-12-background-size": "0%",
+                "pie-13-background-color": "black",
+                "pie-13-background-opacity": "1",
+                "pie-13-background-size": "0%",
+                "pie-14-background-color": "black",
+                "pie-14-background-opacity": "1",
+                "pie-14-background-size": "0%",
+                "pie-15-background-color": "black",
+                "pie-15-background-opacity": "1",
+                "pie-15-background-size": "0%",
+                "pie-16-background-color": "black",
+                "pie-16-background-opacity": "1",
+                "pie-16-background-size": "0%",
+                "pie-2-background-color": "black",
+                "pie-2-background-opacity": "1",
+                "pie-2-background-size": "0%",
+                "pie-3-background-color": "black",
+                "pie-3-background-opacity": "1",
+                "pie-3-background-size": "0%",
+                "pie-4-background-color": "black",
+                "pie-4-background-opacity": "1",
+                "pie-4-background-size": "0%",
+                "pie-5-background-color": "black",
+                "pie-5-background-opacity": "1",
+                "pie-5-background-size": "0%",
+                "pie-6-background-color": "black",
+                "pie-6-background-opacity": "1",
+                "pie-6-background-size": "0%",
+                "pie-7-background-color": "black",
+                "pie-7-background-opacity": "1",
+                "pie-7-background-size": "0%",
+                "pie-8-background-color": "black",
+                "pie-8-background-opacity": "1",
+                "pie-8-background-size": "0%",
+                "pie-9-background-color": "black",
+                "pie-9-background-opacity": "1",
+                "pie-9-background-size": "0%",
+                "pie-size": "100%",
+                "position": "origin",
+                "shape": "ellipse",
+                "source-arrow-color": "#ddd",
+                "source-arrow-fill": "filled",
+                "source-arrow-shape": "none",
+                "target-arrow-color": "#ddd",
+                "target-arrow-fill": "filled",
+                "target-arrow-shape": "none",
+                "text-halign": "center",
+                "text-opacity": "1",
+                "text-outline-color": "#000",
+                "text-outline-opacity": "1",
+                "text-outline-width": "0px",
+                "text-transform": "none",
+                "text-valign": "top",
+                "transition-delay": "0ms",
+                "transition-duration": "0ms",
+                "transition-property": "none",
+                "visibility": "visible",
+                "width": "30px",
+                "z-index": "0"
+            },
+            "selector": "node, edge"
+        },
+        {
+            "css": {
+                "background-opacity": "0.5",
+                "height": "auto",
+                "padding-bottom": "10px",
+                "padding-left": "10px",
+                "padding-right": "10px",
+                "padding-top": "10px",
+                "shape": "rectangle",
+                "width": "auto"
+            },
+            "selector": "node > node"
+        },
+        {
+            "css": {
+                "width": "1px"
+            },
+            "selector": "edge"
+        },
+        {
+            "css": {
+                "overlay-color": "black",
+                "overlay-opacity": "0.25",
+                "overlay-padding": "10px"
+            },
+            "selector": ":active"
+        },
+        {
+            "css": {
+                "active-bg-color": "black",
+                "active-bg-opacity": "0.15",
+                "active-bg-size": "15px",
+                "outside-texture-bg-color": "#000",
+                "outside-texture-bg-opacity": "0.125",
+                "selection-box-border-color": "#aaa",
+                "selection-box-border-width": "1px",
+                "selection-box-color": "#ddd",
+                "selection-box-opacity": "0.65"
+            },
+            "selector": "core"
+        },
+        {
+            "css": {
+                "background-color": "data(color)",
+                "color": "#6e6e6e",
+                "content": "data(name)",
+                "font-size": "10px",
+                "text-valign": "bottom"
+            },
+            "selector": "node"
+        },
+        {
+            "css": {
+                "line-color": "#bfbfbf",
+                "target-arrow-color": "#bfbfbf",
+                "target-arrow-shape": "triangle",
+                "width": "2px"
+            },
+            "selector": "edge"
+        },
+        {
+            "css": {
+                "background-color": "#61bffc",
+                "line-color": "#61bffc",
+                "target-arrow-color": "#61bffc",
+                "transition-duration": "0.5s",
+                "transition-property": "background-color, line-color, target-arrow-color"
+            },
+            "selector": ".highlighted"
+        }
+    ],
+    "userPanningEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "zoomingEnabled": true
+}

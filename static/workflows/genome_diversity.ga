@@ -1,0 +1,432 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "1 Workflow constructed from history 'imported: GigaScience Example 1A -- aye-aye populations'",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset"
+                }
+            ],
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 10,
+                "top": 10
+            },
+            "tool_errors": null,
+            "tool_id": null,
+            "tool_state": "{\"name\": \"Input Dataset\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "user_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "id": 1,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Coverage Distributions",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 230,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_coverage_distributions/1.0.0",
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"individuals\": \"{\\\"__current_case__\\\": 0, \\\"choice\\\": \\\"0\\\"}\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\", \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "id": 2,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Specify Individuals",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_indivs"
+                }
+            ],
+            "position": {
+                "left": 230,
+                "top": 130
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_specify/1.1.0",
+            "tool_state": "{\"__page__\": 0, \"outname\": \"\\\"all except North5\\\"\", \"string\": \"\\\"None\\\"\", \"__rerun_remap_job_id__\": null, \"individuals\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": [\\\"North1\\\", \\\"North2\\\", \\\"North3\\\", \\\"North4\\\", \\\"East1\\\", \\\"East2\\\", \\\"East3\\\", \\\"East4\\\", \\\"East5\\\", \\\"West1\\\", \\\"West2\\\", \\\"West3\\\"]}\", \"input\": \"null\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Specify Individuals",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_indivs"
+                }
+            ],
+            "position": {
+                "left": 230,
+                "top": 250
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_specify/1.1.0",
+            "tool_state": "{\"__page__\": 0, \"outname\": \"\\\"North\\\"\", \"string\": \"\\\"None\\\"\", \"__rerun_remap_job_id__\": null, \"individuals\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": [\\\"North1\\\", \\\"North2\\\", \\\"North3\\\", \\\"North4\\\"]}\", \"input\": \"null\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "id": 4,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Specify Individuals",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_indivs"
+                }
+            ],
+            "position": {
+                "left": 230,
+                "top": 370
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_specify/1.1.0",
+            "tool_state": "{\"__page__\": 0, \"outname\": \"\\\"East\\\"\", \"string\": \"\\\"None\\\"\", \"__rerun_remap_job_id__\": null, \"individuals\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": [\\\"East1\\\", \\\"East2\\\", \\\"East3\\\", \\\"East4\\\", \\\"East5\\\"]}\", \"input\": \"null\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "id": 5,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Specify Individuals",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_indivs"
+                }
+            ],
+            "position": {
+                "left": 230,
+                "top": 490
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_specify/1.1.0",
+            "tool_state": "{\"__page__\": 0, \"outname\": \"\\\"west\\\"\", \"string\": \"\\\"None\\\"\", \"__rerun_remap_job_id__\": null, \"individuals\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": [\\\"West1\\\", \\\"West2\\\", \\\"West3\\\"]}\", \"input\": \"null\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "id": 6,
+            "input_connections": {
+                "input_type|input": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "input_type|p1_input": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Filter SNPs",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_snp"
+                }
+            ],
+            "position": {
+                "left": 450,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_filter_gd_snp/1.2.0",
+            "tool_state": "{\"__page__\": 0, \"lo_genotypes\": \"\\\"0\\\"\", \"lo_coverage\": \"\\\"0\\\"\", \"min_spacing\": \"\\\"0\\\"\", \"lo_quality\": \"\\\"0\\\"\", \"input_type\": \"{\\\"lo_coverage\\\": \\\"0\\\", \\\"lo_quality\\\": \\\"0\\\", \\\"low_ind_cov\\\": \\\"4\\\", \\\"choice\\\": \\\"0\\\", \\\"p1_input\\\": null, \\\"__current_case__\\\": 0, \\\"hi_coverage\\\": \\\"120\\\", \\\"input\\\": null}\", \"low_ind_cov\": \"\\\"4\\\"\", \"p1_input\": \"null\", \"input\": \"null\", \"hi_coverage\": \"\\\"120\\\"\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "id": 7,
+            "input_connections": {
+                "input_type|input": {
+                    "id": 6,
+                    "output_name": "output"
+                },
+                "p1_input": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Aggregate Individuals",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_snp"
+                }
+            ],
+            "position": {
+                "left": 670,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_sum_gd_snp/1.1.0",
+            "tool_state": "{\"__page__\": 0, \"input_type\": \"{\\\"input\\\": null, \\\"__current_case__\\\": 0, \\\"choice\\\": \\\"0\\\"}\", \"__rerun_remap_job_id__\": null, \"p1_input\": \"null\", \"input\": \"null\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "8": {
+            "annotation": "",
+            "id": 8,
+            "input_connections": {
+                "input": {
+                    "id": 7,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Filter",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 890,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "Filter1",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"cond\": \"\\\"c62==1\\\"\", \"input\": \"null\", \"header_lines\": \"\\\"0\\\"\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "9": {
+            "annotation": "",
+            "id": 9,
+            "input_connections": {
+                "individuals|p1_input": {
+                    "id": 2,
+                    "output_name": "output"
+                },
+                "input_type|input": {
+                    "id": 8,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "Phylogenetic Tree",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1110,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_phylogenetic_tree/1.1.0",
+            "tool_state": "{\"minimum_quality\": \"\\\"0\\\"\", \"data_source\": \"\\\"1\\\"\", \"__page__\": 0, \"layout_style\": \"\\\"\\\"\", \"input_type\": \"{\\\"input\\\": null, \\\"data_source\\\": {\\\"__current_case__\\\": 1, \\\"choice\\\": \\\"1\\\"}, \\\"__current_case__\\\": 0, \\\"choice\\\": \\\"0\\\"}\", \"__rerun_remap_job_id__\": null, \"minimum_coverage\": \"\\\"4\\\"\", \"length_style\": \"\\\"\\\"\", \"individuals\": \"{\\\"p1_input\\\": null, \\\"__current_case__\\\": 1, \\\"choice\\\": \\\"1\\\"}\", \"branch_style\": \"\\\"\\\"\", \"input\": \"null\", \"include_reference\": \"\\\"1\\\"\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\", \"scale_style\": \"\\\"\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "10": {
+            "annotation": "",
+            "id": 10,
+            "input_connections": {
+                "individuals|populations_0|p_input": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "individuals|populations_1|p_input": {
+                    "id": 4,
+                    "output_name": "output"
+                },
+                "individuals|populations_2|p_input": {
+                    "id": 5,
+                    "output_name": "output"
+                },
+                "input_type|input": {
+                    "id": 8,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "Prepare Input",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "gd_ped"
+                }
+            ],
+            "position": {
+                "left": 1110,
+                "top": 130
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_prepare_population_structure/1.2.0",
+            "tool_state": "{\"__page__\": 0, \"min_spacing\": \"\\\"0\\\"\", \"input_type\": \"{\\\"input\\\": null, \\\"min_reads\\\": \\\"0\\\", \\\"min_qual\\\": \\\"0\\\", \\\"__current_case__\\\": 0, \\\"choice\\\": \\\"0\\\"}\", \"__rerun_remap_job_id__\": null, \"individuals\": \"{\\\"populations\\\": [{\\\"__index__\\\": 0, \\\"p_input\\\": null}, {\\\"__index__\\\": 1, \\\"p_input\\\": null}, {\\\"__index__\\\": 2, \\\"p_input\\\": null}], \\\"__current_case__\\\": 1, \\\"choice\\\": \\\"1\\\"}\", \"min_reads\": \"\\\"4\\\"\", \"min_qual\": \"\\\"0\\\"\", \"input\": \"null\", \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "11": {
+            "annotation": "",
+            "id": 11,
+            "input_connections": {
+                "input": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "PCA",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1330,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_pca/1.0.0",
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\", \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "12": {
+            "annotation": "",
+            "id": 12,
+            "input_connections": {
+                "input": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Ancestry",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1330,
+                "top": 130
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_population_structure/1.0.0",
+            "tool_state": "{\"__page__\": 0, \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\", \"populations\": \"\\\"2\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "13": {
+            "annotation": "",
+            "id": 13,
+            "input_connections": {
+                "input": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Ancestry",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1330,
+                "top": 250
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/miller-lab/genome_diversity/gd_population_structure/1.0.0",
+            "tool_state": "{\"__page__\": 0, \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/galaxy/data/chrom/?.len\\\"\", \"populations\": \"\\\"3\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+  "elements":{
+    "nodes":[ {
+        "data": {
+        "id": "n0",
+        "name": "Input dataset",
+        "color": "#FCF8E3"}
+      }, {
+        "data": {
+        "id": "n1",
+        "name": "transeq",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n2",
+        "name": "pepstats",
+        "color": "#D9EDF7"}
+      }
+    ],
+    "edges":[
+      {"data": {
+        "id": "n0n1",
+        "weight": "1",
+        "source": "n0",
+        "target": "n1"}
+      },
+      {"data": {
+        "id": "n1n2",
+        "weight": "1",
+        "source": "n1",
+        "target": "n2"}
+      }
+    ]
+  }
+}

@@ -1,0 +1,272 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "wguiblet_2012: Example 1: smilefinder",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "id": 0,
+            "input_connections": {},
+            "inputs": [],
+            "name": "Select populations",
+            "outputs": [
+                {
+                    "name": "pops",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 10,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "select_pop",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"populations\": \"{\\\"populations_select\\\": \\\"specify\\\", \\\"population2\\\": \\\"Yoruba\\\", \\\"population1\\\": \\\"French\\\", \\\"__current_case__\\\": 0}\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "id": 1,
+            "input_connections": {
+                "popfile": {
+                    "id": 0,
+                    "output_name": "pops"
+                }
+            },
+            "inputs": [],
+            "name": "Count",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 230,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "count",
+            "tool_state": "{\"popfile\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "id": 2,
+            "input_connections": {
+                "input": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "name": "Filter",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 450,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "Filter1",
+            "tool_state": "{\"__page__\": 0, \"cond\": \"\\\"c2!='M' and c2!='X' and c2!='Y' and c2!='XY'\\\"\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"input\": \"null\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "Select first",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 670,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "Show beginning1",
+            "tool_state": "{\"__page__\": 0, \"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"lineNum\": \"\\\"1\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "id": 4,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "Remove beginning",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 670,
+                "top": 130
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "Remove beginning1",
+            "tool_state": "{\"input\": \"null\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"num_lines\": \"\\\"1\\\"\", \"__page__\": 0}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "id": 5,
+            "input_connections": {
+                "input": {
+                    "id": 4,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "Sort",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 890,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "sort1",
+            "tool_state": "{\"__page__\": 0, \"style\": \"\\\"alpha\\\"\", \"column\": \"{\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"2\\\"}\", \"__rerun_remap_job_id__\": null, \"order\": \"\\\"ASC\\\"\", \"input\": \"null\", \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"column_set\": \"[{\\\"other_order\\\": \\\"ASC\\\", \\\"__index__\\\": 0, \\\"other_column\\\": {\\\"__class__\\\": \\\"UnvalidatedValue\\\", \\\"value\\\": \\\"3\\\"}, \\\"other_style\\\": \\\"alpha\\\"}]\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "id": 6,
+            "input_connections": {
+                "input1": {
+                    "id": 3,
+                    "output_name": "out_file1"
+                },
+                "queries_0|input2": {
+                    "id": 5,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "Concatenate datasets",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1110,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "cat1",
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"null\", \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"queries\": \"[{\\\"input2\\\": null, \\\"__index__\\\": 0}]\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "id": 7,
+            "input_connections": {
+                "heterozygosity": {
+                    "id": 6,
+                    "output_name": "out_file1"
+                }
+            },
+            "inputs": [],
+            "name": "SmileFinder",
+            "outputs": [
+                {
+                    "name": "SmileFinderCompleteReport",
+                    "type": "tabular"
+                },
+                {
+                    "name": "report",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1330,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "smilefinder",
+            "tool_state": "{\"__page__\": 0, \"shortest_window\": \"\\\"11\\\"\", \"windows\": \"\\\"30\\\"\", \"sensitivity\": \"\\\"0.1\\\"\", \"heterozygosity\": \"null\", \"resampling\": \"\\\"1000\\\"\", \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"__rerun_remap_job_id__\": null}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        },
+        "8": {
+            "annotation": "",
+            "id": 8,
+            "input_connections": {
+                "infile": {
+                    "id": 7,
+                    "output_name": "SmileFinderCompleteReport"
+                }
+            },
+            "inputs": [],
+            "name": "grapher",
+            "outputs": [
+                {
+                    "name": "graph",
+                    "type": "png"
+                }
+            ],
+            "position": {
+                "left": 1550,
+                "top": 10
+            },
+            "post_job_actions": {},
+            "tool_errors": null,
+            "tool_id": "grapher",
+            "tool_state": "{\"__page__\": 0, \"genename\": \"\\\"CUL\\\"\", \"gene_start\": \"\\\"107384618\\\"\", \"__rerun_remap_job_id__\": null, \"strand\": \"\\\"+\\\"\", \"gene_end\": \"\\\"107483698\\\"\", \"chromInfo\": \"\\\"/home/galaxy/galaxy-dist-232ef8122d54/tool-data/shared/ucsc/chrom/?.len\\\"\", \"infile\": \"null\", \"chromosome\": \"\\\"11\\\"\"}",
+            "tool_version": null,
+            "type": "tool",
+            "user_outputs": []
+        }
+    }
+}

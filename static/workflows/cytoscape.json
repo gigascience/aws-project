@@ -1,0 +1,107 @@
+{
+  "elements":{
+    "nodes":[ {
+        "data": {
+        "id": "n0",
+        "name": "Select populations",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n1",
+        "name": "Count",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n2",
+        "name": "Filter",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n3",
+        "name": "Select first",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n4",
+        "name": "Remove beginning",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n5",
+        "name": "Sort",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n6",
+        "name": "Concatenate datasets",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n7",
+        "name": "SmileFinder",
+        "color": "#D9EDF7"}
+      }, {
+        "data": {
+        "id": "n8",
+        "name": "grapher",
+        "color": "#D9EDF7"}
+      }
+    ],
+    "edges":[
+      {"data": {
+        "id": "n0n1",
+        "weight": "1",
+        "source": "n0",
+        "target": "n1"}
+      },
+      {"data": {
+        "id": "n1n2",
+        "weight": "1",
+        "source": "n1",
+        "target": "n2"}
+      },
+      {"data": {
+        "id": "n2n3",
+        "weight": "1",
+        "source": "n2",
+        "target": "n3"}
+      },
+      {"data": {
+        "id": "n2n4",
+        "weight": "1",
+        "source": "n2",
+        "target": "n4"}
+      },
+      {"data": {
+        "id": "n4n5",
+        "weight": "1",
+        "source": "n4",
+        "target": "n5"}
+      },
+      {"data": {
+        "id": "n3n6",
+        "weight": "1",
+        "source": "n3",
+        "target": "n6"}
+      },
+      {"data": {
+        "id": "n5n6",
+        "weight": "1",
+        "source": "n5",
+        "target": "n6"}
+      },
+      {"data": {
+        "id": "n6n7",
+        "weight": "1",
+        "source": "n6",
+        "target": "n7"}
+      },
+      {"data": {
+        "id": "n7n8",
+        "weight": "1",
+        "source": "n7",
+        "target": "n8"}
+      }
+    ]
+  }
+}
