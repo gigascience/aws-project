@@ -17,29 +17,69 @@ $(document).ready(function () {
 
     function dataPanelHtml(node_title, content) {
         return '<div class="panel panel-default panel-warning">\
-                                        <div class="panel-heading">\
-                                        <h3 class="panel-title">' + node_title + '</h3></div>\
-                                        <div class="panel-body">' + content + '</div>\
-                                        </div>';
+                            <div class="panel-heading">\
+                            <h3 class="panel-title">' + node_title + '</h3></div>\
+                            <div class="panel-body">' + content + '</div>\
+                            </div>';
 
     }
 
     function toolPanelHtml(node_title, content) {
         return '<div class="panel panel-default panel-info">\
-                                        <div class="panel-heading">\
-                                        <h3 class="panel-title">' + node_title + '</h3></div>\
-                                        <div class="panel-body">' + content + '</div>\
-                                        </div>';
+                            <div class="panel-heading">\
+                            <h3 class="panel-title">' + node_title + '</h3></div>\
+                            <div class="panel-body">' + content + '</div>\
+                            </div>';
 
     }
 
     function outputPanelHtml(node_title, content) {
         return '<div class="panel panel-default panel-success">\
-                                        <div class="panel-heading">\
-                                        <h3 class="panel-title">' + node_title + '</h3></div>\
-                                        <div class="panel-body">' + content + '</div>\
-                                        </div>';
+                            <div class="panel-heading">\
+                            <h3 class="panel-title">' + node_title + '</h3></div>\
+                            <div class="panel-body">' + content + '</div>\
+                            </div>';
+    }
 
+    function getNode(nodes, id) {
+        var count = 1;
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].data.id == id) {
+                if (nodes[i].data.type == "tool") {
+                    var state = nodes[i].data.tool_state;
+                    var params = '<table class="table">';
+                    for (var prop in state) {
+                        // Check if parameter is a nested array
+                        if (prop !== "__page__" && prop !== "chromInfo" && prop !== "__rerun_remap_job_id__") {
+                            var param = JSON.parse(state[prop]);
+                            if (param instanceof Object) {
+                                var subtable = '<table class="table">';
+
+                                for (var item in param) {
+                                    subtable += "<tr><td>" + item + "</td>";
+                                    subtable += "<td>" + param[item] + "</td></tr>";
+                                }
+                                subtable += "</table>";
+
+                                params += '<tr data-toggle="collapse" data-target="#demo' + count + '" class="accordion-toggle"><td>' + prop + '</td><td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></td></tr>';
+                                params += '<tr><td class="hiddenRow"><div class="accordion-body collapse" id="demo' + count + '">' + subtable + '</div></td></tr>';
+                                count = count + 1
+                                //alert(params);
+                            }
+                            else {
+                                params += "<tr><td>" + prop + "</td>";
+                                params += "<td>" + state[prop] + "</td></tr>";
+                            }
+                        }
+                    }
+                    return toolPanelHtml(nodes[i].data.name + "-" + nodes[i].data.tool_version, params);
+                }
+                else {
+                    return dataPanelHtml(nodes[i].data.name, 'stuff');
+                }
+
+            }
+        }
     }
 
     // When workflow is loaded, init cy
@@ -63,9 +103,9 @@ $(document).ready(function () {
                 var params = '<table class="table">';
                 for (var prop in state) {
                     // Check if parameter is a nested array
-                    if(prop !== "__page__" && prop !== "chromInfo" && prop !== "__rerun_remap_job_id__") {
+                    if (prop !== "__page__" && prop !== "chromInfo" && prop !== "__rerun_remap_job_id__") {
                         var param = JSON.parse(state[prop]);
-                        if(param instanceof Object) {
+                        if (param instanceof Object) {
                             var subtable = '<table class="table">';
 
                             for (var item in param) {
@@ -75,7 +115,7 @@ $(document).ready(function () {
                             subtable += "</table>";
 
                             params += '<tr data-toggle="collapse" data-target="#demo' + count + '" class="accordion-toggle"><td>' + prop + '</td><td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></td></tr>';
-                            params += '<tr><td class="hiddenRow"><div class="accordion-body collapse" id="demo' +  count + '">' + subtable + '</div></td></tr>';
+                            params += '<tr><td class="hiddenRow"><div class="accordion-body collapse" id="demo' + count + '">' + subtable + '</div></td></tr>';
                             count = count + 1
                             //alert(params);
                         }
@@ -133,8 +173,35 @@ $(document).ready(function () {
             elements: elements,
             motionBlur: true,
             selectionType: 'single',
-            boxSelectionEnabled: false
+            boxSelectionEnabled: false,
+
+            // Create events on clicking
+            ready: function () {
+                window.cy = this;
+                cy.on("click", "node", function (evt) {
+                    var node = this;
+                    //console.log("%o", node);
+                    //console.log('Clicked node: ' + evt.cyTarget.id());
+                    $("#pane2").html(getNode(nodes, evt.cyTarget.id()));
+                });
+
+                cy.on("click", "edge", function (evt) {
+                    var edge = this;
+                    console.log("%o", edge);
+                    console.log('Clicked edge: ' + evt.cyTarget.id());
+                    $("#pane2").html("<p>Clicked edge: " +  evt.cyTarget.id() + "</p>");
+                });
+
+                //cy.elements().bind("click", function(){
+                //    this.css({
+                //        content: "clicked"
+                //    });
+                //});
+
+            }
+
         });
+
 
     }
 
