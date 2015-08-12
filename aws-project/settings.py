@@ -1,5 +1,5 @@
 """
-Django settings for hamsap project.
+Django settings for aws-project project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -13,8 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
-
-print STATIC_PATH 
+print STATIC_PATH
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -95,3 +94,45 @@ TEMPLATE_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Absolute path to the media directory
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'application_logging': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'awsproject.log',
+            'formatter': 'verbose'
+        },
+        'db_logging': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'backupCount': 5,
+            'maxBytes': 5000000,
+            'filename': 'django-db.log'
+            },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['db_logging'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'aws-project': {
+            'handlers': ['application_logging'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+    }
+}
+
