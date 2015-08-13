@@ -65,9 +65,11 @@ class Workflow(models.Model):
     figure = models.ForeignKey(Figure, blank=True, null=True)
     table = models.ForeignKey(Table, blank=True, null=True)
     url = models.URLField()
+    galaxy_id = models.CharField(max_length=20, blank=True, null=True)
     title = models.CharField(max_length=128)
     name = models.CharField(max_length=128, blank=True)
     description = models.TextField(blank=True, null=True)
+    history_id = models.CharField(max_length=20, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
