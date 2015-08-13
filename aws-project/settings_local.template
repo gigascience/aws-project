@@ -1,0 +1,31 @@
+###########################################
+# Template configuration file for GigaFig #
+###########################################
+
+# A boolean that turns on/off debug mode for displaying detailed error pages.
+# A production site should never be deployed with DEBUG turned on.
+DEBUG = True
+
+# A boolean that turns on/off template debug mode. If this is True, the fancy
+# error page will display a detailed report for any exception raised during
+# template rendering.
+TEMPLATE_DEBUG = DEBUG
+
+# Don't want emails while developing
+ADMINS = ()
+MANAGERS = ADMINS
+
+# Database access - not used at the moment.
+DATABASE_ENGINE = ''
+DATABASE_NAME = ''
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
+
+# A secret key for a particular Django installation. This is used to provide
+cryptographic signing, and should be set to a unique, unpredictable value.
+SECRET_KEY = ''
+
+# The API key is required for making API calls to GigaGalaxy
+GALAXY_API_KEY = ''
