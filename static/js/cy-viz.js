@@ -1,17 +1,23 @@
 $(document).ready(function () {
     // Parse galaxy url from attribute in cy element
-    var url = $("#cy").attr("data-galaxyurl");
+    var galaxy_wf_id = $("#cy").attr("data-galaxy_wf_id");
+    var galaxy_history_id = $("#cy").attr("data-galaxy_history_id");
 
     // Load data using HTTP GET request
     var wf = $.ajax({
         url: '/gigafig/galaxy2cytoscape/',
         type: 'GET',
         error: function (xhr, tStatus, err) {
-            $('#cy').html('<p>Problem converting galaxy workflow</p><p>HTTP status: ' + xhr.status + '</p><p>' + tStatus + '</p><p>' + err + '</p>');
+            $('#cy').html(
+                '<p>Problem retrieving galaxy workflow json</p>' +
+                '<p>HTTP status: ' + xhr.status + '</p>' +
+                '<p>' + tStatus + '</p>' +
+                '<p>' + err + '</p>');
         },
         dataType: 'json',
         data: {
-            galaxy_wf_json_url: url
+            galaxy_wf_id: galaxy_wf_id,
+            //galaxy_history_id: galaxy_history_id
         }
     });
 
@@ -189,7 +195,7 @@ $(document).ready(function () {
                     var edge = this;
                     console.log("%o", edge);
                     console.log('Clicked edge: ' + evt.cyTarget.id());
-                    $("#pane2").html("<p>Clicked edge: " +  evt.cyTarget.id() + "</p>");
+                    $("#pane4").html("<p>Clicked edge: " +  evt.cyTarget.id() + "</p>");
                 });
 
                 //cy.elements().bind("click", function(){
