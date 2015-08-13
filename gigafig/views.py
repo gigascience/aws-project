@@ -1,33 +1,53 @@
-from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from gigafig.models import Paper
 from gigafig.models import Figure
 from gigafig.models import Table
 from gigafig.models import Workflow
-
-from django.shortcuts import render
 from gigafig.forms import UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.decorators import login_required
 
-import wf2cyto
+import json
+import urllib2
+import logging
+
+from common import display
+
+logger = logging.getLogger('aws-project')
 
 
 def galaxy2cytoscape(request):
-    # Obtain the context from the HTTP request.
+    # Obtain the context from HTTP request
     context = RequestContext(request)
-    galaxy_url = None
-    if request.method == 'GET':
-        galaxy_url = request.GET['galaxy_wf_json_url']
-    if galaxy_url:
-        content = wf2cyto.run(galaxy_url, False, True)
-        print content
-        # Render response and return to client
-        return HttpResponse(content, content_type='text/json')
+    logger.debug("Request: %s", request)
+    key = settings.GALAXY_API_KEY
+    if request.method == 'GET' and 'galaxy_history_id' in request.GET:
+        galaxy_history_id = request.GET['galaxy_history_id']
+        url = "http://gigagalaxy.net/api/cys/history/" + galaxy_history_id
+        logger.debug("gigagalaxy url: %s", url)
+        # Do stuff with galaxy_history_id
+
+    elif request.method == 'GET' and 'galaxy_wf_id' in request.GET:
+        try:
+            # Render response and return to client
+            galaxy_wf_id = request.GET['galaxy_wf_id']
+            url = "http://gigagalaxy.net/api/cys/workflow/" + galaxy_wf_id
+            logger.debug("gigagalaxy url: %s", url)
+            galaxy_dict = display(key, url)
+            json_string = json.dumps(galaxy_dict)
+            return HttpResponse(json_string, content_type='text/json')
+        except TypeError:
+            logger.error("TypeError in galaxy2cytoscape function")
+            return HttpResponse("", content_type='text/json')
+        except urllib2.URLError, e:
+            logger.error("URL error in galaxy2cytoscape function: %s", str(e))
+            return HttpResponse("", content_type='text/json')
     else:
         return HttpResponse("", content_type='text/plain')
 
@@ -58,7 +78,7 @@ def workflow(request, paper_short_name_url, workflow_name):
         # Retrieve all of the associated figures and tables
         # Note that filter returns >= 1 model instance.
         wf = Workflow.objects.get(paper=paper, name=workflow_name)
-        # print "Workflow link: ", wf
+        print "Workflow link: ", wf
 
         # Adds our results list to the template context under name figures.
         context_dict['wf'] = wf
