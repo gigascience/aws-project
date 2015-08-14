@@ -34,43 +34,43 @@ $(document).ready(function () {
             nodes: [
                 {data: {id: 'a',
                         name: 'Select populations',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'b',
                         name: 'Count',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'c',
                         name: 'Filter',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'd',
                         name: 'Select first',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'e',
                         name: 'Remove beginning',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'f',
                         name: 'Sort',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'g',
                         name: 'Concatenate datasets',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'h',
                         name: 'SmileFinder',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'i',
                         name: 'Grapher',
-                        color:'#0088CC'}
+                        color:'#D9EDF7'}
                 },
                 {data: {id: 'j',
                         name: 'graph',
-                        color:'#51A351'}
+                        color:'#FCF8E3'}
                 }
 
             ],
