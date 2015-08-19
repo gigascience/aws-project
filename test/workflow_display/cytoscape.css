@@ -1,0 +1,48 @@
+html {
+	height: 100%;
+}
+
+body {
+    font: 14px helvetica neue, helvetica, arial, sans-serif;
+    position: relative;
+}
+
+#app-body {
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  width: 960px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+}
+
+#cy {
+    width: 960px;
+    height: 540px;
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: auto;
+}
+
+.param {
+  margin-bottom: 1em;
+}
+
+.preamble {
+  margin-bottom: 2em;
+}
+
+p {
+  margin: 0.5em 0;
+  font-size: 0.8em;
+}
+
+.param button {
+  width: 10em;
+  margin-right: 0.25em;
+}
+
+a:hover {
+  color: #62daea;
+}
