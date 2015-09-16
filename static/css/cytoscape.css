@@ -3,27 +3,17 @@ body {
 }
 
 #cy {
-    height: 600px;
-    width: 600px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
 
+    height: 600px;
+    width: 500px;
     /*height: 100%;*/
     /*width: 100%;*/
     position: relative;
     left: 0;
     top: 0;
-
-}
-
-#config {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 17em;
-  /*background: #333;*/
-  box-sizing: border-box;
-  padding: 1em;
-  color: #f7f7f7fd;
+    margin: auto;
 }
 
 .param {
@@ -40,7 +30,7 @@ p {
 }
 
 .param button {
-  width: 3em;
+  width: 10em;
   margin-right: 0.25em;
 }
 
@@ -48,3 +38,5 @@ a,
 a:hover {
   color: #62daea;
 }
+
+.deactive{display: none;}

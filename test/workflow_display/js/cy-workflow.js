@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var cys_json;
 
     var cy = cytoscape({
         container: document.getElementById('cy'),
@@ -430,6 +431,65 @@ $(document).ready(function () {
         layout = makeLayout(opts.layoutOpts);
         layout.run();
     });
+
+    var ga_file;
+    $(document).on('change', '#browsebutton :file', function () {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        //label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            label = input.val();
+        input.trigger('fileselect', [numFiles, label]);
+    });
+
+    $('#browsebutton').on('fileselect', function (event, numFiles, label) {
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+        console.log("Number of files: " + input.length);
+        console.log("Label: " + label);
+        ga_file = label;
+
+        if (input.length) {
+            console.log(input.val());
+            //ga_file = input.val();
+        } else {
+            console.log(log);
+        }
+    });
+
+    function readSingleFile(evt) {
+        //Retrieve the first (and only!) File from the FileList object
+        var f = evt.target.files[0];
+
+        if (!f) {
+            console.log("Failed to load file");
+        }
+
+        // Check if valid galaxy file
+        var r = new FileReader();
+        r.onload = function (e) {
+            var contents = e.target.result;
+            console.log("File size: " + f.size + " bytes");
+            //console.log(contents);
+            var wf = new GalaxyWorkflow("Some workflow");
+            cys_json = wf.parse(contents);
+
+            console.log(cys_json);
+
+
+        };
+        var text = r.readAsText(f);
+        console.log(text);
+    }
+
+    document.getElementById('my-file-selector').addEventListener('change', readSingleFile, false);
+
+
+    //$('#submit').click(function (e) {
+    //    e.preventDefault();// prevent the default anchor functionality
+    //    console.log("Submit button clicked! " + ga_file);
+    //    document.getElementById('my-file-selector').addEventListener('change', readSingleFile, false);
+    //});
 
 }); // on dom ready
 
