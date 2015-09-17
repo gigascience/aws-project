@@ -14,6 +14,13 @@
         <li class="active">{{ wf.name }}</li>
     </ol>
 
+    <div id="wf_info"
+         data-galaxy_wf_id="{{ wf.galaxy_id }}"
+         data-galaxy_history_id="{{ wf.history_id }}"
+         data-wf_title="{{ wf.title }}"
+         data-wf_description="{{ wf.description }}">
+    </div>
+
 
     <!-- <div class="col-md-8"> -->
     <div class="col-md-6">
@@ -26,36 +33,36 @@
     </div>
 
     <div class="col-md-6">
+
+        <!--
+        <div id="tb"></div>
+
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#pane1" data-toggle="tab">Info</a>
+                <a id="tab1" href="#pane1" data-toggle="tab">Info</a>
             </li>
             <li>
                 <div id="ToolsTabViewTemplate"></div>
-                <a href="#pane2" data-toggle="tab">Tools</a>
+                <a id="tab2" href="#pane2" data-toggle="tab">Tools</a>
             </li>
             <li>
                 <div id="AWSTabViewTemplate"></div>
-                <a href="#pane3" data-toggle="tab">AWS</a>
+                <a id="tab3" href="#pane3" data-toggle="tab">AWS</a>
             </li>
         </ul>
 
         <div class="tab-content" style="height: 250px; overflow-y:scroll;">
             <br>
-            <!-- Must be a better way of adding space between tabs and content -->
-
-            <!--
-        <div id="pane1" class="tab-pane active">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ wf.title }}</h3>
-                </div>
-                <div id="wf_description" class="panel-body">
-                    <p>{{ wf.description }}</p>
+            <div id="pane1" class="tab-pane active">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ wf.title }}</h3>
+                    </div>
+                    <div id="wf_description" class="panel-body">
+                        <p>{{ wf.description }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        -->
 
             <div id="tab_container" data-galaxy_wf_id="{{ wf.galaxy_id }}"
                  data-galaxy_history_id="{{ wf.history_id }}">Loading...
@@ -100,58 +107,22 @@
                 </div>
             </div>
         </div>
-        <!-- /.tab-content -->
+        -->
 
-        <br>
-        <!-- Must be a better way of adding space between tabs and content -->
-
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#pane1" data-toggle="tab">Data</a></li>
-        </ul>
-
-        <div class="tab-content" style="height: 250px; overflow-y:scroll;">
+        <section id="tabs">
+            <ul class='nav nav-tabs'></ul>
             <br>
-            <!-- Must be a better way of adding space between tabs and content -->
+            <div></div>
+        </section>
 
-            <div id="pane4" class="tab-pane active">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Data stuff</h3>
-                    </div>
-                    <div id="wf_description" class="panel-body">
-                        <p>Stuff goes here.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <script type="text/template" id="label-tmpl">
+            <li class="active"><a href="#"></a></li>
+        </script>
+        <script type="text/template" id="content-tmpl">
+            <span class="deactive"></span>
+        </script>
 
     </div>
-
-    <script type="text/template" id="info_tab_template">
-        <div id="pane1" class="tab-pane active">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ wf.title }}</h3>
-                </div>
-                <div id="wf_description" class="panel-body">
-                    <p>{{ wf.description }}</p>
-                </div>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/template" id="tools_tab_template">
-         <div id="pane1" class="tab-pane active">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ wf.title }}</h3>
-                </div>
-                <div id="wf_description" class="panel-body">
-                    <p>{{ wf.description }}</p>
-                </div>
-            </div>
-        </div>
-    </script>
 
     <script src="{% static 'js/lib/jquery-2.1.1.js' %}"></script>
     <script src="{% static 'js/lib/bootstrap.min.js' %}"></script>
@@ -164,6 +135,13 @@
     <script src="{% static 'js/lib/bluebird-min-1.2.2.js' %}"></script>
     <script src="{% static 'js/cy-viz.js' %}"></script>
     <script src="{% static 'js/backbone/views/tab-view.js' %}"></script>
+    <script src="{% static 'js/backbone/views/tab-view-new.js' %}"></script>
     <script src="{% static 'js/app.js' %}"></script>
+
+    <style type='text/css'>
+        .deactive {
+            display: none;
+        }
+    </style>
 
 {% endblock %}

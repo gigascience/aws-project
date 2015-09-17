@@ -13,5 +13,6 @@ $(function () {
     // How do we pass the CytoscapeWorkflow model onto the views?
 
     //new app.WorkflowView({el: $("#cy")});
-    new app.TabView({el: $("#tab_container")});
+    new app.TabViewNew();
+    //new app.TabView({el: $("#tab_container")});
 });
