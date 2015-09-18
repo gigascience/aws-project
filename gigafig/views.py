@@ -27,12 +27,23 @@ def galaxy2cytoscape(request):
     context = RequestContext(request)
     logger.debug("Request: %s", request)
     key = settings.GALAXY_API_KEY
+    # For generating cytoscape output from a galaxy history
     if request.method == 'GET' and 'galaxy_history_id' in request.GET:
-        galaxy_history_id = request.GET['galaxy_history_id']
-        url = "http://gigagalaxy.net/api/cys/history/" + galaxy_history_id
-        logger.debug("gigagalaxy url: %s", url)
-        # Do stuff with galaxy_history_id
+        try:
+            galaxy_history_id = request.GET['galaxy_history_id']
+            url = "http://gigagalaxy.net/api/cys/history/" + galaxy_history_id
+            logger.debug("gigagalaxy url: %s", url)
+            galaxy_dict = display(key, url)
+            json_string = json.dumps(galaxy_dict)
+            return HttpResponse(json_string, content_type='text/json')
+        except TypeError:
+            logger.error("TypeError in galaxy2cytoscape function")
+            return HttpResponse("", content_type='text/json')
+        except urllib2.URLError, e:
+            logger.error("URL error in galaxy2cytoscape function: %s", str(e))
+            return HttpResponse("", content_type='text/json')
 
+    # For generating cytoscape output from a galaxy workflow
     elif request.method == 'GET' and 'galaxy_wf_id' in request.GET:
         try:
             # Render response and return to client
