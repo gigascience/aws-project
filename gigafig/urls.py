@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^files/', views.files, name='files'),
     url(r'^galaxy2cytoscape/$', views.galaxy2cytoscape, name='galaxy2cytoscape'),
-
+    url(r'^galaxy_tool/$', views.galaxy_tool, name='galaxy_tool'),
+    url(r'^galaxy_data/$', views.galaxy_data, name='galaxy_data'),
 )

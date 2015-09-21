@@ -13,6 +13,8 @@ from gigafig.models import Table
 from gigafig.models import Workflow
 from gigafig.forms import UserForm, UserProfileForm
 
+from bioblend.galaxy import GalaxyInstance
+
 import json
 import urllib2
 import logging
@@ -20,6 +22,53 @@ import logging
 from common import display
 
 logger = logging.getLogger('aws-project')
+
+
+def galaxy_data(request):
+    # Obtain context from HTTP request
+    context = RequestContext(request)
+    logger.debug("Request: %s", request)
+    if request.method == 'GET' and 'dataset_id' in request.GET:
+        try:
+            dataset_id = request.GET['dataset_id']
+            print "dataset id from galaxy_data:", dataset_id
+            # logger.debug("From galaxy_data: " + dataset_id)
+            gi = GalaxyInstance(url='http://gigagalaxy.net',
+                            key='a5ae594be4329642390989291de9b619')
+            # dataset ids need to be 3 digits long!
+            print "Dataset id string length", len(dataset_id)
+            if len(dataset_id) < 3:
+                dataset_id = "0" + dataset_id
+            dataset_json = gi.datasets.show_dataset(dataset_id)
+            # print "dataset_json: ", dataset_json
+            return HttpResponse(json.dumps(dataset_json), content_type='text/json')
+        except TypeError:
+            logger.error("TypeError in galaxy_data function")
+            return HttpResponse("", content_type='text/json')
+        except urllib2.URLError, e:
+            logger.error("URL error in galaxy_data function: %s", str(e))
+            return HttpResponse("", content_type='text/json')
+
+
+def galaxy_tool(request):
+    # Obtain context from HTTP request
+    context = RequestContext(request)
+    logger.debug("Request: %s", request)
+    if request.method == 'GET' and 'tool_id' in request.GET:
+        try:
+            tool_id = request.GET['tool_id']
+            print tool_id
+            logger.debug("From galaxy_tool: ", tool_id)
+            gi = GalaxyInstance(url='http://gigagalaxy.net',
+                            key='a5ae594be4329642390989291de9b619')
+            tool_json = gi.tools.show_tool(tool_id)
+            return HttpResponse(json.dumps(tool_json), content_type='text/json')
+        except TypeError:
+            logger.error("TypeError in galaxy_tool function")
+            return HttpResponse("", content_type='text/json')
+        except urllib2.URLError, e:
+            logger.error("URL error in galaxy_tool function: %s", str(e))
+            return HttpResponse("", content_type='text/json')
 
 
 def galaxy2cytoscape(request):
@@ -31,6 +80,7 @@ def galaxy2cytoscape(request):
     if request.method == 'GET' and 'galaxy_history_id' in request.GET:
         try:
             galaxy_history_id = request.GET['galaxy_history_id']
+            print "history id: ", galaxy_history_id
             url = "http://gigagalaxy.net/api/cys/history/" + galaxy_history_id
             logger.debug("gigagalaxy url: %s", url)
             galaxy_dict = display(key, url)
