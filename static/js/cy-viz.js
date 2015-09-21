@@ -21,46 +21,51 @@ $(document).ready(function () {
         }
     });
 
-    function inputDataPanelHtml(node_title, content) {
-        return '<div class="panel panel-default panel-info">\
+    function inputDataPanelHtml(data_json) {
+        console.log("From inputDataPanelHtml:", data_json);
+        var json_obj = JSON.parse(data_json);
+        console.log("From inputDataPanelHtml:", json_obj.peek);
+        var data_panel_html =  '<div class="panel panel-default panel-info">\
                             <div class="panel-heading">\
-                            <h3 class="panel-title">' + node_title + '</h3></div>\
-                            <div class="panel-body">' + content + '</div>\
+                            <h3 class="panel-title">' + 'Data input' + '</h3></div>\
+                            <div class="panel-body">' + json_obj.peek + '</div>\
                             </div>';
+        $("#pane2").html(data_panel_html);
     }
 
-    function outputDataPanelHtml(node_title, content) {
-        return '<div class="panel panel-default panel-warning">\
+    function outputDataPanelHtml(data_json) {
+        console.log("From outputDataPanelHtml:", data_json);
+        var json_obj = JSON.parse(data_json);
+        console.log("From outputDataPanelHtml:", json_obj.peek);
+        var data_panel_html =  '<div class="panel panel-default panel-warning">\
                             <div class="panel-heading">\
-                            <h3 class="panel-title">' + node_title + '</h3></div>\
-                            <div class="panel-body">' + content + '</div>\
+                            <h3 class="panel-title">' + 'Data output' + '</h3></div>\
+                            <div class="panel-body">' + json_obj.peek + '</div>\
                             </div>';
+        $("#pane2").html(data_panel_html);
     }
 
-    function toolPanelHtml(node_title, content) {
-        return '<div class="panel panel-default panel-success">\
+    function toolPanelHtml(tool_json) {
+        console.log("From toolPanelHtml:", tool_json);
+        var json_obj = JSON.parse(tool_json);
+        console.log("From toolPanelHtml:", json_obj.description);
+        var tool_panel_html = '<div class="panel panel-default panel-success">\
                             <div class="panel-heading">\
-                            <h3 class="panel-title">' + node_title + '</h3></div>\
-                            <div class="panel-body">' + content + '</div>\
+                            <h3 class="panel-title">' + json_obj.name + '</h3></div>\
+                            <div class="panel-body">' + json_obj.description + '</div>\
                             </div>';
+        $("#pane2").html(tool_panel_html);
     }
 
-    // For creating panels to display node information
-    function getNodePanel(nodes, id) {
-        console.log("In getNodelPanel");
-        for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].data.id == id) {
-                if (nodes[i].data.name == "data_input") {
-                    return inputDataPanelHtml("Data input", nodes[i].data.dataset_id);
-                }
-                else if (nodes[i].data.name == "data_output") {
-                    return outputDataPanelHtml("Data output", nodes[i].data.dataset_id);
-                }
-                else {
-                    return toolPanelHtml(nodes[i].data.name, "Information about tool");
-                }
-            }
+    function httpGetAsync(theUrl, callback)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
         }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
     }
 
     // When workflow is loaded, init cy
@@ -111,7 +116,7 @@ $(document).ready(function () {
                 htmlString += toolPanelHtml(nodes[i].data.name + "-" + nodes[i].data.tool_version, params);
             }
             else {
-                htmlString += inputDataPanelHtml(nodes[i].data.name, 'stuff');
+                //htmlString += inputDataPanelHtml(nodes[i].data.name, 'stuff');
             }
         }
         $("#pane2").html(htmlString);
@@ -164,7 +169,38 @@ $(document).ready(function () {
                     var node = this;
                     //console.log("%o", node);
                     console.log('Clicked node: ' + evt.cyTarget.id());
-                    $("#pane2").html(getNodePanel(nodes, evt.cyTarget.id()));
+                    id = evt.cyTarget.id();
+
+                    for (var i = 0; i < nodes.length; i++) {
+                        if (nodes[i].data.id == id) {
+                            if (nodes[i].data.name == "data_input") {
+                                //$("#pane2").html(inputDataPanelHtml("Data input", nodes[i].data.dataset_id));
+                                var dataset_id = nodes[i].data.dataset_id;
+                                var url = "/gigafig/galaxy_data?dataset_id=" + dataset_id;
+                                console.log("dataset url: ", url);
+                                // inputDataPanelHtml is the callback function to
+                                // create the HTML for the tool panel
+                                httpGetAsync(url, inputDataPanelHtml);
+                            }
+                            else if (nodes[i].data.name == "data_output") {
+                                //$("#pane2").html(outputDataPanelHtml("Data output", nodes[i].data.dataset_id));
+                                var dataset_id = nodes[i].data.dataset_id;
+                                var url = "/gigafig/galaxy_data?dataset_id=" + dataset_id;
+                                console.log("dataset url: ", url);
+                                // outputDataPanelHtml is the callback function to
+                                // create the HTML for the tool panel
+                                httpGetAsync(url, outputDataPanelHtml);
+                            }
+                            else {
+                                var tool_id = nodes[i].data.tool_id;
+                                var url = "/gigafig/galaxy_tool?tool_id=" + tool_id;
+                                console.log("tool url: ", url);
+                                // toolPanelHtml is the callback function to
+                                // create the HTML for the tool panel
+                                httpGetAsync(url, toolPanelHtml);
+                            }
+                        }
+                    }
                 });
 
                 cy.on("click", "edge", function (evt) {
